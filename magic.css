@@ -1,0 +1,107 @@
+:root {
+    --darkest-blue: #0d0a1a;
+    --dark-blue: #1c1a3c;
+    --blurple: #5429F2;
+    --purple: #8429B5;
+    --magenta: #C410EE;
+    --hot-pink: #F81EFD;
+    --bubblegum: #FD60D6;
+    --warm-pink: #E93F7B;
+    --red: #E31845;
+    --ochre: #C74D2C;
+    --golden: #EBA445;
+}
+
+.glyphen-overview {
+    width: 70%;
+    box-shadow: 1px 1px 12px 0 var(--golden), -1px -1px 12px 0 var(--golden);
+}
+
+.glyphen_padding {
+    padding: 40px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+/* Three columns side by side */
+.column {
+    float: left;
+    width: 30.9%;
+    margin-bottom: 16px;
+    padding: 0 20px;
+  }
+  
+  /* Display the columns below each other instead of side by side on small screens */
+  @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      display: block;
+    }
+  }
+  
+  /* Add some shadows to create a card effect */
+  .card {
+    border-radius: 15px;
+    box-shadow: 1px 1px 12px 0 var(--golden), -1px -1px 12px 0 var(--golden);
+    height: 850px;
+  }
+  .attack {
+    box-shadow: 1px 1px 12px 0 #E31845, -1px -1px 12px 0 #E31845;
+  }
+  .protection {
+    box-shadow: 1px 1px 12px 0 #19C887, -1px -1px 12px 0 #19C887;
+  }
+  .malice {
+    box-shadow: 1px 1px 12px 0 #8429B5, -1px -1px 12px 0 #8429B5;
+  }
+
+  .magic_img {
+    border-radius: 15px 15px 0px 0px;
+    padding: 40px;
+  }
+  
+  /* Some left and right padding inside the container */
+  .container {
+    padding: 0 16px;
+  }
+  
+  /* Clear floats */
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .attack-title {
+    color: #e4345a;
+  }
+  .protection-title{
+    color: #3ad19a;
+  }
+  .malice-title{
+    color: #b373d6;
+  }
+  
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    background-color: var(--dark-blue);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    bottom: 10px;
+    -webkit-transition: .2s;
+    transition: .2s;
+  }
+  
+  .button:hover {
+    background-color: var(--golden);
+    color: var(--darkest-blue);
+  } 
+  .button:active {
+    background-color: var(--bubblegum);
+    color: var(--darkest-blue);
+  } 

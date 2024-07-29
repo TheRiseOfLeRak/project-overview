@@ -1,0 +1,155 @@
+:root {
+    --darkest-blue: #0d0a1a;
+    --dark-blue: #1c1a3c;
+    --blurple: #5429F2;
+    --purple: #8429B5;
+    --magenta: #C410EE;
+    --hot-pink: #F81EFD;
+    --bubblegum: #FD60D6;
+    --warm-pink: #E93F7B;
+    --red: #E31845;
+    --ochre: #C74D2C;
+    --golden: #EBA445;
+}
+html {
+    background-color: var(--darkest-blue);
+}
+
+
+* {
+    font-family: "Inter", sans-serif;
+    color: whitesmoke;
+}
+h1 {
+    font-family: "Philosopher", sans-serif;
+}
+
+.logo {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 10px;
+}
+.lerak {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 10px;
+}
+.instagram-logo {
+    position: absolute;
+    right: 35px;
+    top: 12px;
+    padding: 10px;
+}
+.lerak:hover {
+    opacity: 60%;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+#navigation_bar li {
+    display: inline-block;
+}
+#navigation_bar {
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-top: -8px;
+    height: 100px;
+    background-color: var(--dark-blue);
+    list-style-type: none;
+}
+.navigation_link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    left: 100px;
+    width: fit-content;
+    top: 20px;
+    text-align: center;
+    padding: 20px;
+    margin: 0px;
+}
+.navigation_link:hover {
+    color: var(--bubblegum);
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+.navigation_link:active {
+    color: var(--bubblegum);
+}
+.selected_tab {
+    color: var(--bubblegum);
+}
+
+
+#gallery {    
+    line-height: 0;       
+     -webkit-column-count: 5;    
+     -webkit-column-gap: 0px;    
+     -moz-column-count: 5;
+     -moz-column-gap: 0px;
+      column-count: 5;    
+      column-gap: 0px;    
+
+      display:inline-block;    
+      margin-right: auto;    
+      margin-left: auto;  
+}  
+#gallery img {    
+    width: 100% !important;    
+    height: auto !important;  
+}  
+
+@media (max-width: 1000px) {
+    #gallery {
+    -moz-column-count:    3;
+    -webkit-column-count: 3;
+    column-count:         3;
+    } 
+}  
+@media (max-width: 800px) {
+    #gallery {
+    -moz-column-count:    2;
+    -webkit-column-count: 2;
+    column-count:         2;
+    }
+}  
+@media (max-width: 400px) {
+    #gallery {
+    -moz-column-count:    1;
+    -webkit-column-count: 1;
+     column-count:        1;
+    }
+}
+
+.void {
+    position: relative;
+    width: 100%;
+    left:0px;
+    bottom: 600px;
+    margin-bottom: -1000px;
+}
+
+.wishlist-lerak {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#footer {
+    position: relative;
+    height: 20px;
+    bottom: 30px;
+}
+.secret_link {
+    opacity: 0;
+    float: right;
+}
+.secret_link:hover {
+    opacity: 0.5;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+.extra_secret_link:hover {
+    opacity: 0.1 !important;
+}

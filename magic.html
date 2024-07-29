@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>The Rise of LeRak</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="ci/Icon_LeRak_Done.png">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="magic.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter|Inter&effect=fire|neon|outline|emboss|shadow-multiple|Philosopher|Philosopher&effect=fire|neon|outline|emboss|shadow-multiple">
+    <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+  </head>
+  <body>
+
+    <ul id = "navigation_bar">
+      <li><a href = "index.html"><img class="logo" src="ci/Logo_Weiss.png" width="100"></img></a></li>
+      <li><a class = "navigation_link" href = "development.html">Entstehung</a></li>
+      <li><a class = "navigation_link selected_tab" href = "magic.html">Magiesystem</a></li>
+      <li><a class = "navigation_link" href = "characters.html">Charaktere</a></li>
+      <li><a class = "navigation_link" href = "team.html">Team</a></li>
+      <li><a class = "navigation_link" href = "news.html">Neuigkeiten</a></li>
+      <li><img class="instagram-logo" src="ci/Instagram_Glyph_Gradient.png" width="25"></img></li>
+      <li><a target="_blank" rel="noopener noreferrer" href = "https://www.instagram.com/theriseoflerak"><img class="lerak" src="ci/LeRak.png" width="100"></img></a></li>
+    </ul>
+
+    <h1>Magiesystem</h1>
+
+    <p>Das Spielprinzip ist ein Kampf, der zwischen der spielenden Person und dem computergesteuerten Gegner LeRak abl&auml;uft. 
+      Dabei agieren die Spielenden aktiv, indem sie LeRak angreifen. 
+      Dies geschieht durch das Zeichnen von Glyphen mit einem VR-Controller. 
+      Der Controller ist im Spiel visuell durch einen Zauberstab dargestellt, der in der Lage ist, 
+      Glyphen in die virtuelle Luft vor den Spielenden zu zeichnen. Dazu wird eine Taste am Controller gedr&uuml;ckt gehalten, 
+      bis die Bewegung ausgef&uuml;hrt wurde. 
+      Um den Zauber auszul&ouml;sen, wird die Taste wieder losgelassen. Bei korrekt ausgef&uuml;hrter Bewegung wird die Geste erkannt 
+      und ein entsprechender Zauber ausgel&ouml;st. Dabei wird die spielende Person visuell 
+      durch eine angezeigte Spur unterst&uuml;tzt, die an der Spitze des Zauberstabs erscheint</p>
+
+    <p>Insgesammt gibt es drei Zauber. Den Schutzzauber, die Attacke und den hinterh&auml;ltigen Zauber. 
+      Die Zauber bauen auf dem &bdquo;Schere-Stein-Papier&ldquo;-Prinzip auf. 
+      Dieses funktioniert so, dass ein Element immer von je einem Element geschlagen wird 
+      und jeweils ein anderes Element schlagen kann. So bildet sich ein Kreis, der beschreibt, 
+      wie die drei Elemente miteinander interagieren.</p>
+    <div class = "glyphen_padding">    
+      <img class="glyphen-overview" src="magie/Glyphensystem_darkest-blue.jpg">
+    </div>
+    
+    
+    <p>Der Schutzzauber kann den Schaden der Attacke blockieren, den diese normalerweise verursacht. 
+      Er sch&uuml;tzt die ihn benutzende Person vor Angriffen. Der hinterh&auml;ltige Zauber 
+      kann den Schutz durchbrechen und raubt Leben von der Person, gegen die der Hinterhalt gewirkt wird. 
+      Das Leben wird der Zielperson abgezogen und der Person, die den Zauber gewirkt hat, gutgeschrieben. 
+      Dieser Effekt h&auml;lt eine festgelegte Zeit lang an. Der Angriffszauber kann diese Zeit verk&uuml;rzen 
+      und ist somit gegen den Hinterhalt wirksam.</p>
+
+    <div class="row">
+      <div class="column">
+        <div class="card attack">
+          <img class="magic_img" src="magie/Glyphen_Attack.png" style="width:86.5%">
+          <div class="container">
+            <h2>Attacke</h2>
+            <p class="attack-title">Glyphe</p>
+            <p>Die Glyphe der Attacke befindet sich in der Ebene, die sich senkrecht zu der zaubernden Person befindet. 
+              Dies hat eine direkte, auf den Gegner gerichtete Bewegung zur Folge.
+            </p>
+            <p><button class="button">Sound</button></p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card protection">
+          <img class="magic_img" src="magie/Glyphen_Protection.png" style="width:86.5%">
+          <div class="container">
+            <h2>Schutz</h2>
+            <p class="protection-title">Glyphe</p>
+            <p> Der Schutz findet in der Ebene vor der Person statt, um die Glyphe direkt wie ein Schutzschild wirken zu lassen.
+            </p>
+            <p><button class="button">Sound</button></p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card malice">
+          <img class="magic_img" src="magie/Glyphen_Malice.png" style="width:86.5%">
+          <div class="container">
+            <h2>Hinterhalt</h2>
+            <p class="malice-title">Glyphe</p>
+            <p>Der Hinterhalt wird zuerst auf der Ebene parallel zum Boden gezeichnet und erhebt sich dann in der Senkrechten 
+              aus dieser Ebene heraus. Man baut die Glyphe also wie eine Falle vor sich auf.
+            </p>
+            <p><button class="button">Sound</button></p>
+          </div>
+        </div>
+      </div>
+    </div> 
+    
+    <script src="script.js"></script>
+    </body>
+</html>

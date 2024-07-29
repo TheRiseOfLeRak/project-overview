@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<style>
+  canvas { margin-left: 50px; margin-right: 50px; float: left; border: 5px solid; border-color: #26154a; }
+  table { margin-bottom: 4px; border-collapse: collapse; text-align: center; color: #FFFFFF; }
+  #current_col_view { height: 50px; width: 215px; border-collapse: collapse; border: 1px; text-align: center; }
+  .untere_leiste { width: auto; text-align: left; }
+  td { height: 50px; width: 100px; color:#FFFFFF; text-align: center; }
+  .button_td { -webkit-transition: .2s; transition: .2s; user-select: none;}
+  .button_color {height:70px; width:70px}
+  .button_td:hover { opacity: 0.9; font-size: 120%; }
+  .button_td:active { opacity: 0.6; font-size: 80%; }
+
+  #clear_message {
+    margin-left: 120px; margin-top: 260px;
+    border: 5px dashed; padding: 10px;
+    visibility:hidden; position: absolute ; color: #FF0000;
+    user-select: none;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .logoImg { position: absolute; width: 40px; -webkit-transition: .2s; transition: .2s; }
+  .logoImg:hover { width: 45px; }
+  .logoImg:active { opacity: 0.05; width: 33%; }
+
+  .slidecontainer {
+  width: 100%; /* Width of the outside container */
+  margin-left: 50px;
+}
+
+/* The slider itself */
+.slider {
+  width: 150px; /* Full-width */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+  background-color: inherit;
+}
+
+</style>
+<meta charset="utf-8">
+<head>
+  <title>Whiteboard</title>
+  <meta charset=utf-8>
+  <link rel="icon" type="image/x-icon" href="Piata.png">
+</head>
+
+<body>
+
+  <span>
+    <span>
+      <img class = "logoImg" src="Piata.png" title = "Gehn'se mit?">
+      <p style="margin-left: 50px; color: #1b8287;">Whiteboard</p>
+      <span id="clear_message"></span>
+      <table border="1px" style="margin-left: 50px; ">
+        <tr style="height: 35px;">
+          <td class="button_td" id="button_load" style="background-color: #0f494d;">Load</td>
+          <td class="button_td" id="button_clear" style="background-color: #0f494d;">Clear</td>
+          <td class="button_td" id="button_megaClear" style="background-color: #0f494d;">Mega-Clear</td>
+          <td class="button_td" id="button_save" style="background-color: #0f494d;">Save</td>
+        </tr>
+      </table>
+
+      <form id="prompt" action="" style="margin-left: 50px; margin-bottom: 10px; margin-top: 10px;">
+        <input id="prompt_input" type="text" placeholder="Imagine a word..." autocomplete="off" /><button>Input</button>
+      </form>
+      
+    </span>
+    <canvas id="canv" width="800" height="500" ></canvas>
+
+    <span>
+      <span id="colour_sel"> Colour Selection </span>
+        <table border="1px">
+          <tr>
+            <td id="current_col_view" style="background-color: #000000;">Selected Colour</td>
+          </tr>
+        </table>
+      </span>
+    </span>
+    <span style="color: #1b8287;">Choose a GImage:  
+      <select name="GImage" id="gImage" style="margin-top: 20px; width: 95px;" >
+        <option value="Piata.png">Piata</option>
+        <option value="LeRak.png">LeRak</option>
+        <option value="Alastor.png">Alastor</option>
+        <option value="Angel.png">Angel</option>
+        <option value="Done.png">Done</option>
+        <option value="Kuh.png">Kuh</option>
+        <option value="Le Rak.png">LeRak2</option> 
+        <option value="sus.png">Sus</option>
+        <option value="TRoL_b.png">TRoL black</option>
+        <option value="TRoL_w.png">TRoL white</option>
+      </select>
+    </span><br><br>
+    <span style="color: #1b8287"> Custom Hex Colour:  
+      <input id="colour_input" name="colourInputField" type="text" size="7" value="#000000" onkeyup="farbwechsel(this)"></input>
+    </span>
+
+  </span>
+    
+
+<div style="margin-top: 25px;"> 
+  <table style="margin-left: 50px;">
+    <tr>
+      <td class = "untere_leiste">
+        <span style="display: inline;">
+          <table border="1px">
+            <tr style="height: 50px;">
+              <td class="button_td button_draw" id="button_line" style="background-color: #1b8287;">GLine</td>
+              <td class="button_td button_draw" id="button_oval" style="background-color: #0f494d;">GOval</td>
+              <td class="button_td button_draw" id="button_rect" style="background-color: #0f494d;">GRect</td>
+              <td class="button_td button_draw" id="button_label" title = "Usage: Input the Text into the Text Box, then draw to add to the canvas" style="background-color: #0f494d;">GLabel</td>
+              <td class="button_td button_draw" id="button_image" title = "Usage: Input the Image Name into the Text Box, then draw on the canvas." style="background-color: #0f494d;">GImage</td>
+              <td class="button_td button_draw" id="button_hamster" title = "Lauras Hamster Flink." style="background-color: #0f494d;">GHamster</td>
+            </tr>
+          </table>
+        </span>
+      </td>
+      <td class = "untere_leiste">
+          
+          <!-- For the future: HSLA Sliders -->
+          <!-- <div style="margin-top: 20px;">
+            <div class="slidecontainer">
+              <input type="range" min="0" max="255" value="0" class="slider" id="myRange">
+            </div>
+            <div class="slidecontainer">
+              <input type="range" min="0" max="255" value="0" class="slider" id="myRange">
+            </div>
+            <div class="slidecontainer">
+              <input type="range" min="0" max="255" value="0" class="slider" id="myRange">
+            </div>
+            <div class="slidecontainer">
+              <input type="range" min="0" max="255" value="0" class="slider" id="myRange">
+            </div>
+          </div> -->
+      </td>
+
+      <td class = "untere_leiste">
+        <span style="margin-left: 50px;">
+          <span id="slider_output_text" style="color: #1b8287">Line Width: </span>
+          <span id="slider_output" style="color: #1b8287">3 </span>
+        </span>
+
+        <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="3" class="slider" id="myRange">
+        </div>
+      </td>
+  
+  </tr>
+  </table>
+</div>
+
+
+
+<ul id="messages"></ul>
+    <form id = "chat" action="">
+      <input id="name" type="text" placeholder="Your Name"/>
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+"use strict"
+
+/** Farben:
+*   #6634a8 Lila
+*   #1b8287 Cyan
+*   #871b3f Cranberry
+*   #b5db2a Lime
+*   #8f1818 Karmesin
+*   #e3c81b Gelb
+*   #e39349 Peach
+*   #39664a Pine
+*   #432347 Royal Purple
+*   #e39dcb Bubblegum
+*   #123456 Dunkelblau
+*   #36b7d1 Azure
+**/
+
+//Setup of Colour Selector
+
+  var xField = 3;
+  var yField = 4;
+  var ar = [
+  "#e3c81b","#e39349","#8f1818",
+  "#b5db2a","#39664a", "#1b8287",
+  "#36b7d1","#123456","#6634a8",
+  "#e39dcb","#871b3f","#432347"
+  ];
+  var current_col = "#000000";
+  var stroke_width = 3;
+
+  var timeoutHandle;
+
+  var button_active = "button_line";
+
+  var colour_selection = "<table border = 1>";
+  var z = 0;
+  for (var i = 0; i < yField; i++){
+      colour_selection += "<tr>";
+      for (var j = 0; j < xField; j++){
+
+          colour_selection += '<td class= "button_td button_color" id= ' + ar[z] + ' style = "background-color: '+ ar[z] + '" > <div>'+ ar[z]+"</div></td>";
+          z++;
+      }
+      colour_selection += "</tr>";
+  }
+  colour_selection += "</table>";
+
+$("#colour_sel").html(colour_selection);
+
+
+//on click on Piata
+$(".logoImg").on ('click touch', function() {
+  $("canvas").css("background-color", current_col);
+  $("html").css("background-color", current_col);
+  $("td").css("border-color", current_col);
+  $("table").css("border-color", current_col);
+  $("input").css("background-color", current_col);
+  if(current_col == "#FFFFFF") {
+    $("input").css("color", "#000000");
+    $("canvas").css("border-color", "#26154a");
+  } else {
+    $("input").css("color", "#FFFFFF");
+  }
+  if(current_col == "#222") {
+    $("canvas").css("background-color", "#FFFFFF");
+    $("canvas").css("border-color", "#EEDDCC");
+  }
+});
+
+//on click on Load button
+$("#button_load").on ('click touch', function() {
+  ctx.restore(); //this doesn't actually do anything, just a placeholder at this point
+
+});
+
+//on click on Clear button
+$("#button_clear").on ('click touch', function() {
+  ctx.clearRect (0, 0, canv.width, canv.height);
+
+});
+
+//on click on Mega-Clear button
+$("#button_megaClear").on ('click touch', function() {
+  isMegaClear = true;
+  socket.emit ("TRoL_white_clear", { "user_id": user_id, "mega_clear": isMegaClear });
+  
+});
+
+//on click on Save button
+$("#button_save").on ('click touch', function() {
+ ctx.save(); //this doesn't actually do anything, just a placeholder at this point
+
+});
+
+
+//on click on colour selector
+$('#colour_sel').on ('click touch', 'td', function() {
+  current_col = this.id;
+  $("#current_col_view").html("Selected Colour").css("background-color", current_col);
+  document.getElementById("colour_input").value=current_col;
+
+});
+
+//Also das ist ein missglÃ¼cktes Experiment if I've ever seen one uiuiui
+
+// $(".button_draw").on ('click touch', function() {
+//   var buttons_draw = document.getElementsByClassName("button_draw");
+//   $('.button_draw').each(function(i, obj) {
+//     $(this.id).css("background-color", "#0f494d");
+//   });
+//   $(this).css("background-color", "#000000");
+//   for (var i = 0; i < buttons_draw.length; i++) {
+//     buttons_draw[i].classList.css("background-color", "#0f494d");
+//     contents[i].classList.css("background-color", "#000000");
+//   }
+
+// });
+
+
+//on click on GLine button
+$("#button_line").on ('click touch', function() {
+  draw_id = "line";
+  $("#button_line").css("background-color", "#1b8287");
+  $("#button_oval").css("background-color", "#0f494d");
+  $("#button_rect").css("background-color", "#0f494d");
+  $("#button_label").css("background-color", "#0f494d");
+  $("#button_image").css("background-color", "#0f494d");
+  $("#button_hamster").css("background-color", "#0f494d");
+
+});
+
+//on click on GOval button
+$("#button_oval").on ('click touch', function() {
+  draw_id = "oval";
+  $("#button_line").css("background-color", "#0f494d");
+  $("#button_oval").css("background-color", "#1b8287");
+  $("#button_rect").css("background-color", "#0f494d");
+  $("#button_label").css("background-color", "#0f494d");
+  $("#button_image").css("background-color", "#0f494d");
+  $("#button_hamster").css("background-color", "#0f494d");
+
+});
+
+//on click on GRect button
+$("#button_rect").on ('click touch', function() {
+  draw_id = "rect";
+  $("#button_line").css("background-color", "#0f494d");
+  $("#button_oval").css("background-color", "#0f494d");
+  $("#button_rect").css("background-color", "#1b8287");
+  $("#button_label").css("background-color", "#0f494d");
+  $("#button_image").css("background-color", "#0f494d");
+  $("#button_hamster").css("background-color", "#0f494d");
+
+});
+
+//on click on GLabel button
+$("#button_label").on ('click touch', function() {
+  draw_id = "label";
+  $("#button_line").css("background-color", "#0f494d");
+  $("#button_oval").css("background-color", "#0f494d");
+  $("#button_rect").css("background-color", "#0f494d");
+  $("#button_label").css("background-color", "#1b8287");
+  $("#button_image").css("background-color", "#0f494d");
+  $("#button_hamster").css("background-color", "#0f494d");
+
+});
+
+//on click on GImage button
+$("#button_image").on ('click touch', function() {
+  draw_id = "image";
+  $("#button_line").css("background-color", "#0f494d");
+  $("#button_oval").css("background-color", "#0f494d");
+  $("#button_rect").css("background-color", "#0f494d");
+  $("#button_label").css("background-color", "#0f494d");
+  $("#button_image").css("background-color", "#1b8287");
+
+});
+
+//on click on GHamster button
+$("#button_hamster").on ('click touch', function() {
+  draw_id = "hamster";
+  $("#button_line").css("background-color", "#0f494d");
+  $("#button_oval").css("background-color", "#0f494d");
+  $("#button_rect").css("background-color", "#0f494d");
+  $("#button_label").css("background-color", "#0f494d");
+  $("#button_image").css("background-color", "#0f494d");
+  $("#button_hamster").css("background-color", "#1b8287");
+});
+
+//Zwei Funktionen, eine Reset die alle Buttons auf die off-Farbe setzt und eine, die den spezifichen geklickten Button hell färbt
+
+//when a colour is input into the custom colour input
+function farbwechsel(elem) {
+  current_col = $(elem).val();
+  $("#current_col_view").html(current_col).css("background-color", current_col);
+}
+
+
+//Line Width selector slider -----------------------------------------------
+var slider = document.getElementById("myRange");
+//var output = 0;
+//output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+//  output.innerHTML = this.value;
+  stroke_width = this.value;
+  $("#slider_output").html(stroke_width);
+}
+
+
+//Data that gets broadcast
+  var socket = io("/broadcast");
+
+  var canv = document.getElementById ("canv");
+  var ctx = canv.getContext ("2d");
+
+  var xStart;
+  var xStop;
+  var yStart;
+  var yStop;
+
+  var label_text = "GGLabel";
+
+  var isMegaClear = false;
+
+  var draw_id = "line";
+  var user_id = "Nutzi";
+  var prompt_word = "";
+
+
+  var canvPos = $(canv) .offset ();
+  //var draw = false;
+  //$(canv) .mousedown (function (evt) { draw = true; move (evt); } );
+  //$(canv) .mouseup (function (evt) { draw = false; move (evt); } );
+  //$(canv) .mousemove (move);
+  //function move (evt) {
+  //var x = evt.pageX - canvPos.left;
+  //var y = evt.pageY - canvPos.top;
+  //$("h1").text ("x/y: " + x + " / " + y);
+  //if (draw)
+  //ctx .fillRect (x-1, y-1, 3, 3);
+  //}
+
+  socket.on ("TRoL_white_clear", function (obj) {
+    $("#clear_message").css("visibility","visible");
+    $('#messages').html('');
+    if (isMegaClear == true) {
+      doMegaClear(obj.user_id);
+    } else if (isMegaClear == false) {
+      startNewPrompt(obj.user_id);
+    }
+    timeoutHandle = setTimeout(function() {
+       $("#clear_message").css("visibility","hidden");         
+            }, 1500);
+  });
+
+  function startNewPrompt(user) {
+    ctx.clearRect (0, 0, canv.width, canv.height);
+    $("#clear_message").css("color","#6634a8");
+    $("#clear_message").html(user + " is starting a new round with a new prompt!");
+  }
+
+  function doMegaClear(user) {
+    ctx.clearRect (0, 0, canv.width, canv.height);
+    $("#clear_message").css("color","red");
+    $("#clear_message").html(user + " hat einen MEGA-CLEAR durchgeführt!!!");
+  }
+    
+  socket.on ("TRoL_white_draw", function (obj) {
+    if (obj.id === "line") {
+      $("#canvas").html (draw_line(obj.start_x, obj.start_y, obj.end_x, obj.end_y, obj.color, obj.strokeWidth));
+    } else if (obj.id === "oval") {
+      $("#canvas").html (draw_oval(obj.start_x, obj.start_y, obj.end_x, obj.end_y, obj.color, obj.strokeWidth, obj.labelText, obj.secretCommand));
+    } else if (obj.id === "rect") {
+      $("#canvas").html (draw_rect(obj.start_x, obj.start_y, obj.end_x, obj.end_y, obj.color, obj.strokeWidth, obj.secretCommand));
+    } else if (obj.id === "label") {
+      $("#canvas").html (draw_label(obj.start_x, obj.start_y, obj.end_x, obj.end_y, obj.color, obj.strokeWidth, obj.labelText));
+    } else if (obj.id === "image") {
+      $("#canvas").html (draw_image(obj.start_x, obj.start_y, obj.end_x, obj.end_y, obj.color, obj.strokeWidth, obj.imageName));
+    } else if (obj.id === "hamster") {
+      $("#canvas").html (draw_hamster(obj.start_x, obj.start_y, obj.end_x, obj.end_y, obj.color, obj.strokeWidth, obj.labelText));
+    }
+  });
+
+$(canv).on ('mousedown touchstart', function(evt) {
+//$(canv) .mousedown (function (evt) {
+    xStart = evt.pageX - canvPos.left;
+    yStart = evt.pageY - canvPos.top;
+  } );
+
+$(canv).on ('mouseup touchend', function(evt) {
+  //$(canv) .mouseup (function (evt) {
+    xStop = evt.pageX - canvPos.left;
+    yStop = evt.pageY - canvPos.top;
+
+    //Unsere Errungenschaften
+    //draw_line(xStart, yStart, xStop, yStop);
+    //draw_oval(xStart, yStart, xStop, yStop, current_col, stroke_width);
+
+    socket.emit ("TRoL_white_draw", { "id": draw_id, "start_x": xStart, "start_y": yStart, "end_x": xStop, "end_y": yStop, color: current_col, "strokeWidth": stroke_width, "labelText": label_text, "imageName": $('#gImage').find(":selected").val(), "secretCommand": user_id });
+  } );
+
+  function draw_line (xStart, yStart, xStop, yStop, current_col, stroke_width){
+    ctx.beginPath();
+    ctx.moveTo (xStart, yStart);
+    ctx.lineTo (xStop, yStop);
+    ctx.strokeStyle = current_col;
+    ctx.lineWidth = stroke_width;
+    ctx.stroke ();
+    //ctx .fillRect (xStart, xStop, yStart, yStop);
+  }
+
+  function draw_oval (xStart, yStart, xStop, yStop, current_col, stroke_width, secretSetting, secretCommand){
+    var radius = Math.sqrt((Math.pow((xStart - xStop), 2)) + (Math.pow((yStart - yStop), 2)));
+    var mittelpunktX = (xStart + xStop)/2;
+    var mittelpunktY = (yStart + yStop)/2;
+    ctx.beginPath();
+    if (secretSetting === "half") {
+      if (yStart <= yStop) {
+        ctx.arc (mittelpunktX, mittelpunktY, radius/2, 0, Math.PI, false);
+      } else if (yStart >= yStop) {
+        ctx.arc (mittelpunktX, mittelpunktY, radius/2, 0, Math.PI, true);
+      }
+    } else if (secretSetting === "center"){
+      ctx.arc (xStart, yStart, radius, 0, Math.PI*2, false);
+    } else {
+      ctx.arc (mittelpunktX, mittelpunktY, radius/2, 0, Math.PI*2, false);
+    }
+    ctx.strokeStyle = current_col;
+    ctx.fillStyle = current_col;
+    ctx.lineWidth = stroke_width;
+
+    if (secretCommand === "filled") {
+      ctx.fill ();
+    } else {
+      ctx.stroke ();
+    }
+  }
+
+  function draw_rect (xStart, yStart, xStop, yStop, current_col, stroke_width, secretCommand){
+    var width =  Math.abs(xStop - xStart);
+    var height = Math.abs(yStop - yStart);
+
+    ctx.strokeStyle = current_col;
+    ctx.fillStyle = current_col;
+    ctx.lineWidth = stroke_width;
+    ctx.beginPath();
+    if (xStart < xStop && yStart < yStop) {
+      ctx.rect(xStart, yStart, width, height);
+
+    } else if (xStart > xStop && yStart < yStop) {
+      ctx.rect(xStart - width, yStart, width, height);
+
+    } else if (xStart > xStop && yStart > yStop) {
+      ctx.rect(xStart - width, yStart - height, width, height);
+
+    } else if (xStart < xStop && yStart > yStop) {
+      ctx.rect(xStart, yStart - height, width, height);
+    }
+
+    if (secretCommand === "filled") {
+      ctx.fill ();
+    } else {
+      ctx.stroke ();
+    }
+    //$("#slider_output").html(yStart);
+  }
+
+  function draw_label (xStart, yStart, xStop, yStop, current_col, stroke_width, labelText){
+    var size = stroke_width;
+    var width =  Math.abs(xStop - xStart);
+    if (width > 0) {size=width;}
+    ctx.font = size + "px Arial, sans-serif";
+    ctx.fillStyle = current_col;
+    ctx.fillText (labelText, xStart, yStart);
+  }
+
+  function draw_image (xStart, yStart, xStop, yStop, current_col, stroke_width, imageFile){
+    var size = stroke_width;
+    var width =  Math.abs(xStop - xStart);
+    var height = Math.abs(yStop - yStart);
+    if (width > height) {size=width;} else if (width < height) {size=height;} else if (width == 0 && height == 0) {size=stroke_width;}
+    var img = new Image ();
+    img.onload = function () {
+      if (xStart <= xStop && yStart <= yStop) {
+      ctx.drawImage (img, xStart, yStart, size, size);
+
+    } else if (xStart > xStop && yStart < yStop) {
+      ctx.drawImage (img, xStart - size, yStart, size, size);
+
+    } else if (xStart > xStop && yStart > yStop) {
+      ctx.drawImage (img, xStart - size, yStart - height, size, size);
+
+    } else if (xStart < xStop && yStart > yStop) {
+      ctx.drawImage (img, xStart, yStart - height, size, size);
+    }
+    };
+    img.src = imageFile;
+  }
+
+  function draw_hamster (xStart, yStart, xStop, yStop, current_col, stroke_width, imageFile){
+    var size = stroke_width;
+    var width =  Math.abs(xStop - xStart);
+    var height = Math.abs(yStop - yStart);
+    if (width > height) {size=width;} else if (width < height) {size=height;} else if (width == 0 && height == 0) {size=stroke_width;}
+    var img = new Image ();
+    img.onload = function () {
+      if (xStart <= xStop && yStart <= yStop) {
+      ctx.drawImage (img, xStart, yStart, size, size);
+
+    } else if (xStart > xStop && yStart < yStop) {
+      ctx.drawImage (img, xStart - size, yStart, size, size);
+
+    } else if (xStart > xStop && yStart > yStop) {
+      ctx.drawImage (img, xStart - size, yStart - height, size, size);
+
+    } else if (xStart < xStop && yStart > yStop) {
+      ctx.drawImage (img, xStart, yStart - height, size, size);
+    }
+    };
+    img.src = 'Flink.jpg';
+  }
+
+
+
+// skribbl.io
+
+$(function () {
+  $('#chat').submit(function(e){
+    e.preventDefault(); // prevents page reloading
+    user_id = $('#name').val(); //only temporary for testing of WIP features!!!
+    label_text = $('#m').val(); //only temporary for testing of WIP features!!!
+    //socket.emit('TRoL_chat_message', $('#name').val() + ": " + $('#m').val());
+    socket.emit ('TRoL_chat_message', { "name": $('#name').val(), "message": $('#m').val() });
+    $('#m').val('');
+    return false;
+  });
+  socket.on('TRoL_chat_message', function(msg){
+    $('#messages').append('<li>' + msg.name + ": " + msg.message);
+      console.log("Name ",msg.name," message ",msg.message);
+      label_text = msg.message;
+      compareWords();
+    label_text = msg;
+  });
+});
+
+//When a word is submitted into the prompt input field
+  $('#prompt').submit(function(e){
+    console.log("Prompt submitted");
+    e.preventDefault(); // prevents page reloading
+    socket.emit('TRoL_prompt_input', $('#prompt_input').val());
+    $('#prompt_input').val('');
+    isMegaClear = false;
+    socket.emit ("TRoL_white_clear", { "user_id": user_id, "mega_clear": isMegaClear });
+    return false;
+  });
+  socket.on('TRoL_prompt_input', function(prompt){
+    //$('#messages').append($('<li>').text(prompt));
+    prompt_word = prompt.toLowerCase()
+    $('#messages').html('');
+    //$('#messages').append($('<li>').text(prompt_word));
+  });
+
+  //Compares the word you sent in the chat and the prompt
+  function compareWords() {
+    $("#clear_message").css("visibility","visible");
+    if (label_text.toLowerCase() == prompt_word) {
+      $("#clear_message").html(label_text + " stimmt!");
+      $("#clear_message").css("color","green");
+    } else {
+      $("#clear_message").html(label_text + " stimmt nicht!");
+      $("#clear_message").css("color","red");
+    }
+    timeoutHandle = setTimeout(function() {
+       $("#clear_message").css("visibility","hidden");         
+            }, 1500);
+  }
+
+
+  //TO DO:
+
+  //Line width größer machen
+
+  //Reload
+
+  //Formen&Text
+
+  //Line mit mehreren Punkten, indem ein X gespeichert wird, wenn man an eine Stelle klickt sodass xStartyStart & xStopyStop gleich sind
+  //wenn man dann woanders klickt, wird eine line zwischen X und dem neuen Punkt gezeichnet, usw.
+
+  //Tafelschwamm, der mit eine transparente FlÃ¤che Zeichnet, (die mit der Zeit immer unsichtbarer wird)
+
+  //Linie mit Rechtsklick zeichnen kÃ¶nnen (mit Rechtsklick wird ein "marker" gesetzt, der als Eckpunkt wirkt)
+
+  //Skribbl.io
+
+  //Pro Strich wird ein auf ein Kostenkonto gezÃ¤hlt - wenn man die Seite schlieÃŸen mÃ¶chte, kommt ein PopUp, das einen freundlich
+  //darauf hinweist, dass man pro Strich 1$ bezahlen muss.
+
+  //Custom colors speichern und emitten
+
+  //Bild eingeben um es aufs Canvas zu tun
+
+  //Geheime Tinte
+
+  //Schiffe Versenken (Vorgenerierte Spielbretter)
+
+  //Es wird in einem Videoplayer das Bidde helfen sie mir Video abgespielt wenn man eine Bidde helfen sie mir Anfrage abschickt
+
+  //rgba Auswahl Slider
+
+  //Lineal / Gitter
+
+  //Fill Funktion (zumindest das letzte Gezeichnete??)
+
+
+
+
+</script>
+
+</body>
+</html>
