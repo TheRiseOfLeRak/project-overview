@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="ci/Icon_LeRak_Done.png">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="characters.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter|Inter&effect=fire|neon|outline|emboss|shadow-multiple|Philosopher|Philosopher&effect=fire|neon|outline|emboss|shadow-multiple">
     <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
   </head>
   <body>
-    <script src="script.js"></script>
 
     <ul id = "navigation_bar">
       <li><a href = "index.html"><img class="logo" src="ci/Logo_Weiss.png" width="100"></img></a></li>
@@ -20,11 +20,84 @@
       <li><a class = "navigation_link" href = "team.html">Team</a></li>
       <li><a class = "navigation_link" href = "news.html">Neuigkeiten</a></li>
       <li><img class="instagram-logo" src="ci/Instagram_Glyph_Gradient.png" width="25"></img></li>
-      <li><a target="_blank" rel="noopener noreferrer" href = "https://www.instagram.com/theriseoflerak"><img class="lerak" src="ci/LeRak.png" width="100"></img></a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href = "https://www.instagram.com/theriseoflerak"><img class="lerak-button" src="ci/LeRak.png" width="100"></img></a></li>
     </ul>
     
     <h1>Charaktere</h1>
     
+    <div class="row">
+      
+      <div class="column">
+        <div class="card lerak">
+          <img class="team-img" src="ci/LeRak.png" alt="LeRak (er ist sehr b&ouml;se!)" style="width:100%">
+          <div class="container">
+            <h2>LeRak</h2>
+            <p class="title">Zaubercomputer</p>
+            <p>Spezies: ???</br>
+              Aussehen: Wie ein Apple Macintosh der ersten Generation</br>
+              hochintelligent</br>
+              beherrscht Glyphenmagie</br>
+              b&ouml;se und gef&auml;hrlich
+            </p>
+            <p>Leben: 240</p>
+            <p><button class="button" id="sounds/Vine_boom.mp3">Gehn'se mit?</button></p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card spielis">
+          <img class="team-img" src="img/pressematerial_2024.png" alt="Die Spielis" style="width:100%">
+          <div class="container">
+            <h2>Die Spielis</h2>
+            <p class="title">Zauberstudis</p>
+            
+            <p>Denken, sie w&auml;ren was besseres als LeRak<br>
+              
+              
+            </p>
+            <p>Leben: 120</br>
+              Mana: 120</p>
+            <p>thericeoflerak@gmail.com</p>
+            <p><button class="button">Da schwebt ja so n komisches M&auml;nnchen rum</button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card forschis">
+          <img class="team-img" src="img/DSC2333.JPG" alt="Die Forschis" style="width:100%">
+          <div class="container">
+            <h2>Die Forschis</h2>
+            <p class="title">Forschende</p>
+            <p> Hochprofessionelle Forschende und auf gar keinen Fall eigentlich Studis!
+            </p>
+            <p>thesurpriseoflerak@gmail.com</p>
+            <p><button class="button">Bidde helfen Sie uns</button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card entwickler">
+          <img class="team-img" src="team/dispos.png" alt="_̷̧̨̫͎̫̝̯̝̬̾̀̌̉̽̚͠_̷̪͍̬͇͈̼̘͆̓̋́̌͆͘_̶̛̭̳̱̟̭͈̗̺̝̒͆͊͂͜_̷̯̲̼̒̎͘_̶͕̬̑̂̈́̈́_̴̡̜̩͈͓͇̼͙̱̄͂͗̃͗͑̎̏̕͠ͅ_̶̢̢̙̟̖̥͌̂̕͝_̵̲̫͎̣̜͓̗͐_̶̨͈̟͌̽̉͘_̴̗̱̠̄̈́̈́/" style="width:100%">
+          <div class="container">
+            <h2>_̷̢̨̫̖̠̯͉͙̖̬̦̺͒͋̿̐̎̿̈́̈́͒̋̈́̃̅͆̋̐̎͜͜͝͝_̴̛̙̰̪̫̰̅͊̀̀̆̿̐͌̊́͌͋͐͑́͝_̸͚͓̞̪̩̦̦̫͎̄́̓͋̊̓̐͐̀͋͌̎̓̀̅̇̔͌͌̏̌͐̈́̚͘̕͝_̴̨̪̙̙̝͊̂͌̄͒̒̈́͗̅̾̔̏̊̀̍̅̓͘͘͜͝͝͠ͅ_̸̧̢̡̡̨̛͚̯͕̼̺̼̘̯̲̺͈̣̩͎̟̮̰̙̱̘͓͎̻͚͎̩̊̍̇̊͑͑͐̉̆̐̀̒̇͝ͅ_̸̨̧̢͙̖̥̩̠̭̼̳̞̬͖̼͉̱̗̦͕͌̀̇͊̔͌̿̈́̓̂̉͂̃̌̊̈́̅̃̎̂̃̌͗̈͋͗̈͒̅̈́͜͠ͅ_̴̛̗͍̦̳͖̓̽͊̓͗̀̾͊͋̋̾̅̽̄̀͂͂̐̿̂̈́̅̋̕̕͝͠_̴̢̨͉̘̙̣͉̜͎͚͇̗̩̱͕͎̟̫͖̼̖̫̘̬̞͚̤̰͛̋̉̌͋͐̌͐͂̅̌̃̂͌̋̀͌͘͜͜͠͠͠͝_̵̨̧̛͕̹͖̰̱̦̮͉̲͕̙̬̫͚̺͍̻̝̯̮̩̪̠͍̺̳̫̠̟̪̫̬̫̼̈́̑͆͛͊̀͐̿́̈́̀͛͘͘͜͜͝_̷̡̧̟̹̮̺̤͖̯̜͙͕̪̣͉͕̠̖̻͔͖̙͍̤͉̯̱̳̰̈́͐̊̾͗̋̉̋̅̓̇͘͝</h2>
+            <p class="title">Sonnenbrillentr&auml;ger</p>
+            <p> Macos, Ios, Fenstos, Dispos, Linus
+            </p>
+            <p>theliesoflerak@gmail.com</p>
+            <p><button class="button">???</button></p>
+          </div>
+        </div>
+      </div>
+
+
+      <!--D̵̛̮̯̜̐̅͒͐͆̋̔̉̈́̍͘͝i̵̛̜̻̮͊͛̀̂̉̀̎̑̇͒͘͝e̵̡̡̧̺͇̙̖̩̱͔̹͎͐͐̇̈́͌̈́͋͗̃̎͊̉̃̊͠͝ ̷̡̜͈̣̝͕̼͔̘̣͍̩͓̱͈͂̍̔̃̑̓͆͑̊̏̿͛̎̓̀͑̃̃̿̚̚͜͝͝͝Ȩ̶̛̜̫̭̝͙̻̼͖̩̣̪̠͖͍̯̱͉̭͍̙̠̩͉̌̊͒̃̒̋͂̍̈́̔̊͒̌̉́́̀̊͊̕̚͝͝ͅn̷̢̡͖͍̖̤̗̖̞̱̮̘͔͎̱͖̤̤͚̉̌̾̓̔̉̍̏̏͋̋͂͗̇̏͒̋͂͐̿͆̚̕͜͠͠ţ̸̡̞̞͕̙̯̖̪̤͉̺̠̝͚̫̺̗̙̰̊̈́̐̍͊̎͆̚͜w̴̧̠̫̻͚̻̦̿̓̅̊̌̉́̅͘͝i̷̪̞̪͉͆͆̍̋͂̔̈̃̆̀͠͝͠c̶̨̥̭̭̪̳̼͉̜̬̥̭̻̩̦̦̝̈̓̾͗́̈́̔̑̿̄̀̕͜͝͠͝ķ̵̛̘̝̰͕̳͍̹̬͉͚͓̣̪̒̽̈́̈́͆̉̓̕ͅl̴͎̻͍̭͔͈̺̹̮̗͓̣͉͔̫̱̽͜͜ȇ̴̺̙̦̝̠͍̜͓̰͈̱̟̜̰̗͔̻̗͖̦̣̲̇͜͠r̸̨̛̛͔̼͇̺̭̣͕̘͉͇̺̝̙̗̱̮̟̗͉̤͑̏̽͌̊͛́̂̈͝͝ͅ-->
+    
+    </div>
+
+
     <h2>LeRak</h2> 
         <h3>Namensfindung</h3>
         <p>Um ein Duell gegen einen computergesteuerten Gegner zu erstellen, brauchte es zun&auml;chst eben diesen Gegner. 
@@ -82,5 +155,7 @@
         <p>About, Forschi-Blog</p>
     <h2>_̷̧̨̫͎̫̝̯̝̬̾̀̌̉̽̚͠_̷̪͍̬͇͈̼̘͆̓̋́̌͆͘_̶̛̭̳̱̟̭͈̗̺̝̒͆͊͂͜_̷̯̲̼̒̎͘_̶͕̬̑̂̈́̈́_̴̡̜̩͈͓͇̼͙̱̄͂͗̃͗͑̎̏̕͠ͅ_̶̢̢̙̟̖̥͌̂̕͝_̵̲̫͎̣̜͓̗͐_̶̨͈̟͌̽̉͘_̴̗̱̠̄̈́̈́/<h2> 
         <p>ARG?</p>
+        
+    <script src="script.js"></script>
   </body>
 </html>

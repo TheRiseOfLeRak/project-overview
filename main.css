@@ -20,7 +20,7 @@ html {
     font-family: "Inter", sans-serif;
     color: whitesmoke;
 }
-h1 {
+h1, h2, h3{
     font-family: "Philosopher", sans-serif;
 }
 
@@ -30,7 +30,7 @@ h1 {
     top: 0px;
     padding: 10px;
 }
-.lerak {
+.lerak-button {
     position: absolute;
     right: 0px;
     top: 0px;
@@ -42,7 +42,7 @@ h1 {
     top: 12px;
     padding: 10px;
 }
-.lerak:hover {
+.lerak-button:hover {
     opacity: 60%;
     -webkit-transition: .2s;
     transition: .2s;
@@ -128,6 +128,13 @@ h1 {
     left:0px;
     bottom: 600px;
     margin-bottom: -1000px;
+}
+
+.news-background {
+    position: absolute;
+    width: 100%;
+    margin-top: 300px;
+    margin-left: -8px;
 }
 
 .wishlist-lerak {

@@ -1,0 +1,76 @@
+:root {
+    --darkest-blue: #0d0a1a;
+    --dark-blue: #1c1a3c;
+    --blurple: #5429F2;
+    --purple: #8429B5;
+    --magenta: #C410EE;
+    --hot-pink: #F81EFD;
+    --bubblegum: #FD60D6;
+    --warm-pink: #E93F7B;
+    --red: #E31845;
+    --ochre: #C74D2C;
+    --golden: #EBA445;
+}
+/* Three columns side by side */
+ .column {
+    float: left;
+    width: 17.5%;
+    margin-bottom: 16px;
+    padding: 0 20px;
+  }
+  
+  /* Display the columns below each other instead of side by side on small screens */
+  @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      display: block;
+    }
+  }
+  
+  /* Add some shadows to create a card effect */
+  .card {
+    border-radius: 15px;
+    box-shadow: 1px 1px 12px 0 var(--golden), -1px -1px 12px 0 var(--golden);
+  }
+
+  .team-img {
+    border-radius: 15px 15px 0px 0px;
+  }
+  
+  /* Some left and right padding inside the container */
+  .container {
+    padding: 0 16px;
+  }
+  
+  /* Clear floats */
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .title {
+    color: var(--golden);
+  }
+  
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    background-color: var(--dark-blue);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    -webkit-transition: .2s;
+    transition: .2s;
+  }
+  
+  .button:hover {
+    background-color: var(--golden);
+    color: var(--darkest-blue);
+  } 
+  .button:active {
+    background-color: var(--bubblegum);
+    color: var(--darkest-blue);
+  } 
