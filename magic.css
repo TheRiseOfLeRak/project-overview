@@ -2,14 +2,15 @@
     --darkest-blue: #0d0a1a;
     --dark-blue: #1c1a3c;
     --blurple: #5429F2;
-    --purple: #8429B5;
+    --malice-purple: #8429B5;
     --magenta: #C410EE;
     --hot-pink: #F81EFD;
     --bubblegum: #FD60D6;
     --warm-pink: #E93F7B;
-    --red: #E31845;
+    --attack-red: #E31845;
     --ochre: #C74D2C;
     --golden: #EBA445;
+    --protection-green: #19C887;
 }
 
 .glyphen-overview {
@@ -47,13 +48,13 @@
     height: 850px;
   }
   .attack {
-    box-shadow: 1px 1px 12px 0 #E31845, -1px -1px 12px 0 #E31845;
+    box-shadow: 1px 1px 12px 0 var(--attack-red), -1px -1px 12px 0  var(--attack-red);
   }
   .protection {
-    box-shadow: 1px 1px 12px 0 #19C887, -1px -1px 12px 0 #19C887;
+    box-shadow: 1px 1px 12px 0 var(--protection-green), -1px -1px 12px 0 var(--protection-green);
   }
   .malice {
-    box-shadow: 1px 1px 12px 0 #8429B5, -1px -1px 12px 0 #8429B5;
+    box-shadow: 1px 1px 12px 0 var(--malice-purple), -1px -1px 12px 0 var(--malice-purple);
   }
 
   .magic_img {
